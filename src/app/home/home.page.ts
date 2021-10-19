@@ -17,6 +17,10 @@ export class HomePage {
   listado = [];
   constructor(private crud: CrudService,
               private toast: ToastController) {}
+  
+  ngOnInit() {
+
+  }
 
   async agregar(txtRut:HTMLInputElement, txtNombre:HTMLInputElement, txtFono:HTMLInputElement)
   {

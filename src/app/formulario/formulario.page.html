@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>formulario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="lista.length > 0">
+    <h1 class="ion-text-center">Listado de contactos</h1>
+    <ion-list>
+      <ion-row>
+        <ion-col size="1">Id</ion-col>
+        <ion-col size="4">Nombre</ion-col>
+        <ion-col size="4">Usuario</ion-col>
+        <ion-col size="3">Fono</ion-col>
+      </ion-row>
+      
+      <div *ngFor="let item of lista">
+        <ion-item>
+          <ion-row class="ion-text-center">
+            <ion-col size="1">{{item.id}}</ion-col>
+            <ion-col size="4">{{item.name}}</ion-col>
+            <ion-col size="4">{{item.username}}</ion-col>
+            <ion-col size="3">{{item.phone}}</ion-col>
+          </ion-row>
+        </ion-item>      
+        <hr>      
+      </div>
+    </ion-list>
+  </div>
+<!--
+  <ion-list>      
+    <div *ngFor="let item of lista">
+      <ion-item>
+        <ion-label>
+          <h3>{{item.name}}</h3>
+          <h2>{{item.username}}</h2>
+          <p>{{item.phone}}</p>
+        </ion-label>
+      </ion-item>      
+    </div>      
+  </ion-list>
+  -->
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="agregar(txtRut, txtNombre, txtFono)">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+    <ion-button (click)="buscar()">
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+    <ion-button (click)="listar()" slot="end">
+      <ion-icon slot="icon-only" name="list"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
