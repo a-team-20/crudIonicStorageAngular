@@ -15,32 +15,84 @@ export class ApiRestService {
   private apiUrl = 'https://jsonplaceholder.typicode.com';
 
   listado = [];
-  constructor(private http: HttpClient) { }
+  datos : any;
+  constructor(private http: HttpClient) { 
+    
+  }
 
-  getPost(id)
+  getPost(id: string)
   {
     let url = this.apiUrl + "/posts/" + id;
-
-    this.http.get(url).subscribe(data => {
-      console.log(data);
-      return data;
-    }, err => {
-      if(err.status == 404)
-      {
-        console.log(err);
-        console.log("Error en la respuesta del servidor")
-      }
+    return this.getAny(url);
+  }
+  async getPosts(userId: any)
+  {
+    let url = this.apiUrl + "/posts";
+    await this.getArray(url);
+  
+    let aux =this.listado.filter( (x) => {
+      return x.userId == userId;
     });
-    return [];
+    this.listado = aux; 
+    return aux;
+   
+  }
+  getUser(id: string)
+  {
+    let url = this.apiUrl + "/users/" + id;
+    return this.getAny(url);
   }
   getUsers()
   {
-    this.listado = [];
     let url = this.apiUrl + "/users";
+    return this.getArray(url);
+  }
+
+  createPost(userId: any,title:string, body:string)
+  {
+    let url = this.apiUrl + "/posts";
+    let userPost = 
+    { 
+      "id"    : 0,
+      "userId": userId,
+      "title" : title,
+      "body"  : body  
+    }
+
+
+    this.http.post<any>(url, userPost).subscribe(data => {
+      console.log(data.id);
+    })
+/*    this.http.post<any>(url, { title: 'Angular POST Request Example' }).subscribe(data => {
+      console.log(data.id);
+  })
+
+*/
+
+  }
+
+
+
+
+  getArray(url: string)
+  {
+    this.listado = [];
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+'/users').subscribe((data: []) => {
+      this.http.get(url).subscribe((data: []) => {
         resolve(data);
         data.forEach(element => {this.listado.push(element)});
+      }, err => {
+        reject(err);
+      });
+    });    
+  }
+  getAny(url: string)
+  {
+    this.datos = "" ;
+    return new Promise((resolve, reject) => {
+      this.http.get(url).subscribe((data: any) => {
+        resolve(data);
+        this.datos = data;
       }, err => {
         reject(err);
       });

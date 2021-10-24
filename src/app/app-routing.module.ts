@@ -7,13 +7,17 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'formulario',
+    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
+  },
+  {
+    path: 'detalle/:id',
+    loadChildren: () => import('./detalle/detalle.module').then( m => m.DetallePageModule)
+  },
+  {
     path: '',
     redirectTo: 'formulario',
     pathMatch: 'full'
-  },
-  {
-    path: 'formulario',
-    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
   },
 ];
 

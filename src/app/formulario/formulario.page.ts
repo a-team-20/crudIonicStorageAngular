@@ -10,7 +10,7 @@ import { ApiRestService } from '../api-rest.service';
 })
 export class FormularioPage implements OnInit {
 
-  lista = [];
+  listado = [];
   nombre ="";
   id = "";
   constructor(private api: ApiRestService) { }
@@ -21,8 +21,8 @@ export class FormularioPage implements OnInit {
   }
   listar()
   {
-    const datos = this.api.getUsers();
-    this.lista = this.api.listado;
+    this.api.getUsers();
+    this.listado = this.api.listado;
 
     //console.table(this.api.listado);
     //console.table(datos);

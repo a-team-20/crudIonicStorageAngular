@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="datos != null; else datosNoEncontrados">
+  <div class="ion-text-center">
+    <h2>{{datos.name}}</h2>
+    <h3>{{datos.username}}</h3>
+    <h3>{{datos.email}}</h3>
+    <h4>{{datos.phone}}</h4>
+    <hr>
+    <h3>Empresa:</h3>    
+    <h3>{{datos.company.name}}</h3>
+  </div>
+    
+  <hr>
+
+  {{listado.length}}
+  <div *ngIf="listado.length > 0">
+    <h1 class="ion-text-center">TODO</h1>
+    <ion-list>
+      <div *ngFor="let item of listado ;let indice=index">
+
+        <ion-item >
+          <ion-label>{{indice+1}} {{item.title}}</ion-label>
+        </ion-item>
+        
+      </div>
+      
+      <hr>
+    </ion-list>
+    <h1 class="ion-text-center">Listado de post</h1>
+    <ion-list>
+      <div *ngFor="let item of listado ;let indice=index"  [routerLink]="['detallePost/', item.id]">
+
+        <ion-item *ngIf="item.userId== id" >
+          <ion-label>{{indice+1}} {{item.title}}</ion-label>
+        </ion-item>
+        
+      </div>
+      
+      <hr>
+    </ion-list>
+  </div>
+  
+</div>
+<ng-template #datosNoEncontrados>
+  <h1>Datos no encontrados</h1>
+</ng-template>
+
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button  color="danger" type="button" (click)="ingresar()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>
