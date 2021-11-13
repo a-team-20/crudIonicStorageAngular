@@ -10,13 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 // npm install  @ionic/storage-angular;
 import { IonicStorageModule } from '@ionic/storage-angular';
 
-// para usar una API rest. Agregar en NgModule, import HttpClientModule
+// importar cliente HTML
+
 import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule ,IonicStorageModule.forRoot(),HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule ,IonicStorageModule.forRoot(), HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

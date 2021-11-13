@@ -16,8 +16,16 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'formulario',
+    redirectTo: 'persona',
     pathMatch: 'full'
+  },
+  {
+    path: 'persona',
+    loadChildren: () => import('./persona/persona.module').then( m => m.PersonaPageModule)
+  },
+  {
+    path: 'datospersona/:id',
+    loadChildren: () => import('./datos-persona/datos-persona.module').then( m => m.DatosPersonaPageModule)
   },
 ];
 
